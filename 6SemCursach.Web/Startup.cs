@@ -23,6 +23,8 @@ namespace _6SemCursach.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = Configuration.GetConnectionString("6semcursach");
+            
             services.AddControllersWithViews();
         }
 
