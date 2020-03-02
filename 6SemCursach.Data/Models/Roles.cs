@@ -8,6 +8,7 @@ namespace _6SemCursach.Data.Models
     {
         public int RoleId { get; set; }
         public string Title { get; set; }
+        public List<Users> Users { get; set; } 
     }
     
 }
