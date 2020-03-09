@@ -16,7 +16,7 @@ namespace ForLab45
         {
             Setup();
             GetRole();
-            SetSem();
+            //SetSem();
             Console.WriteLine("Ok");
         }
 

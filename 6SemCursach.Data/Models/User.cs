@@ -10,7 +10,7 @@ namespace _6SemCursach.Data.Models
         public Teacher Teacher { get; set; }
         public Student Student { get; set; }
 
-        public int IdRole { get; set; }
+        public int RoleFK { get; set; }
         public Role Role { get; set; }
     }
 }

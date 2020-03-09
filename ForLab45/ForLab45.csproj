@@ -16,10 +16,4 @@
     <ProjectReference Include="..\6SemCursach.Data\6SemCursach.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

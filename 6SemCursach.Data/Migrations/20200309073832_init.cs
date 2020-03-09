@@ -2,7 +2,7 @@
 
 namespace _6SemCursach.Data.Migrations
 {
-    public partial class CreateDataBase : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,18 +40,17 @@ namespace _6SemCursach.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    IdRole = table.Column<int>(nullable: false),
-                    RoleId = table.Column<int>(nullable: true)
+                    RoleFK = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_RoleId",
-                        column: x => x.RoleId,
+                        name: "FK_Users_Roles_RoleFK",
+                        column: x => x.RoleFK,
                         principalTable: "Roles",
                         principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,14 +60,14 @@ namespace _6SemCursach.Data.Migrations
                     StudentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    IDUser = table.Column<int>(nullable: false)
+                    UserFK = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Students", x => x.StudentId);
                     table.ForeignKey(
-                        name: "FK_Students_Users_IDUser",
-                        column: x => x.IDUser,
+                        name: "FK_Students_Users_UserFK",
+                        column: x => x.UserFK,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -81,14 +80,14 @@ namespace _6SemCursach.Data.Migrations
                     TeacherId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    IDUser = table.Column<int>(nullable: false)
+                    UserFK = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teachers", x => x.TeacherId);
                     table.ForeignKey(
-                        name: "FK_Teachers_Users_IDUser",
-                        column: x => x.IDUser,
+                        name: "FK_Teachers_Users_UserFK",
+                        column: x => x.UserFK,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -102,14 +101,14 @@ namespace _6SemCursach.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
-                    IDTeacher = table.Column<int>(nullable: false)
+                    TeacherFK = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Courses", x => x.CourseId);
                     table.ForeignKey(
-                        name: "FK_Courses_Teachers_IDTeacher",
-                        column: x => x.IDTeacher,
+                        name: "FK_Courses_Teachers_TeacherFK",
+                        column: x => x.TeacherFK,
                         principalTable: "Teachers",
                         principalColumn: "TeacherId",
                         onDelete: ReferentialAction.Cascade);
@@ -119,65 +118,65 @@ namespace _6SemCursach.Data.Migrations
                 name: "CoursStud",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(nullable: false),
-                    StudentId = table.Column<int>(nullable: false),
-                    SemesterId = table.Column<int>(nullable: false)
+                    CourseFK = table.Column<int>(nullable: false),
+                    StudentFK = table.Column<int>(nullable: false),
+                    SemesterFK = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CoursStud", x => new { x.CourseId, x.StudentId });
+                    table.PrimaryKey("PK_CoursStud", x => new { x.CourseFK, x.StudentFK });
                     table.ForeignKey(
-                        name: "FK_CoursStud_Courses_CourseId",
-                        column: x => x.CourseId,
+                        name: "FK_CoursStud_Courses_CourseFK",
+                        column: x => x.CourseFK,
                         principalTable: "Courses",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CoursStud_Semesters_SemesterId",
-                        column: x => x.SemesterId,
+                        name: "FK_CoursStud_Semesters_SemesterFK",
+                        column: x => x.SemesterFK,
                         principalTable: "Semesters",
                         principalColumn: "SemesterId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CoursStud_Students_StudentId",
-                        column: x => x.StudentId,
+                        name: "FK_CoursStud_Students_StudentFK",
+                        column: x => x.StudentFK,
                         principalTable: "Students",
                         principalColumn: "StudentId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_IDTeacher",
+                name: "IX_Courses_TeacherFK",
                 table: "Courses",
-                column: "IDTeacher",
+                column: "TeacherFK",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CoursStud_SemesterId",
+                name: "IX_CoursStud_SemesterFK",
                 table: "CoursStud",
-                column: "SemesterId");
+                column: "SemesterFK");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CoursStud_StudentId",
+                name: "IX_CoursStud_StudentFK",
                 table: "CoursStud",
-                column: "StudentId");
+                column: "StudentFK");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_IDUser",
+                name: "IX_Students_UserFK",
                 table: "Students",
-                column: "IDUser",
+                column: "UserFK",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teachers_IDUser",
+                name: "IX_Teachers_UserFK",
                 table: "Teachers",
-                column: "IDUser",
+                column: "UserFK",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_RoleId",
+                name: "IX_Users_RoleFK",
                 table: "Users",
-                column: "RoleId");
+                column: "RoleFK");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
