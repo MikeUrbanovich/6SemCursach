@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _6SemCursach.BusinessLogic.Services;
 using _6SemCursach.Data.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,8 +33,19 @@ namespace _6SemCursach.Web
 
             services.AddDbContext<ApplicationContext>();
 
+            // установка конфигурации подключения
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
+
             services.AddControllersWithViews();
             services.AddTransient<ICource, ServiceCource>();
+            services.AddTransient<IUser, ServiceUser>();
+            services.AddTransient<IRegister, ServiceRegister>();
+            services.AddTransient<IStudent, ServiceStudent>();
+            services.AddTransient<ITeacher, ServiceTeacher>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +66,8 @@ namespace _6SemCursach.Web
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();     // авторизация
 
             app.UseEndpoints(endpoints =>
             {

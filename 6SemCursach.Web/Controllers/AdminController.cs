@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _6SemCursach.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _6SemCursach.Web.Controllers
 {
+    [Authorize(Roles = "Student")]
     public class AdminController : Controller
     {
         private readonly ICource _cource;
