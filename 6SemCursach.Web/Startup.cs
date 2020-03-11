@@ -38,10 +38,11 @@ namespace _6SemCursach.Web
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
 
             services.AddControllersWithViews();
-            services.AddTransient<ICource, ServiceCource>();
+            services.AddTransient<ICourse, ServiceCourse>();
             services.AddTransient<IUser, ServiceUser>();
             services.AddTransient<IRegister, ServiceRegister>();
             services.AddTransient<IStudent, ServiceStudent>();

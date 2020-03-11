@@ -1,102 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using _6SemCursach.BusinessLogic.Models;
 using _6SemCursach.BusinessLogic.Services;
+using _6SemCursach.Web.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _6SemCursach.Web.Controllers
 {
-    [Authorize(Roles = "Student")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private readonly ICource _cource;
+        private readonly ICourse _cource;
 
-        public AdminController(ICource cource)
+        public AdminController(ICourse cource)
         {
             _cource = cource;
         }
         // GET: Admin
         public ActionResult Index()
         {
-            return View(_cource.GetAllCources());
+            return View();
         }
 
-        // GET: Admin/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public IActionResult AddCource()
         {
             return View();
         }
 
-        // GET: Admin/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult AddCource(CourceModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                var courceExists = _cource.CourseExists(model.Title);
+                if (!courceExists)
+                {
+                    var cource = new NewCourse()
+                    {
+                        Title = model.Title,
+                        Price = model.Price
+                    };
+                    // добавляем пользователя в бд
+                    _cource.AddCourse(cource);
 
-                return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index", "Home");
+
+                }
+                else
+                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Admin/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
     }
 }

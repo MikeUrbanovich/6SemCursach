@@ -37,7 +37,15 @@ namespace _6SemCursach.Web.Controllers
                 {
                     await Authenticate(user); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    if (user.Role == "Admin")
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -70,6 +78,7 @@ namespace _6SemCursach.Web.Controllers
                     await Authenticate(user); // аутентификация
 
                     return RedirectToAction("Index", "Home");
+
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");

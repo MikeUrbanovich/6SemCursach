@@ -23,11 +23,11 @@ namespace _6SemCursach.Data.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Teachers-Courses
-            modelBuilder.Entity<Teacher>()
-            .HasOne(t => t.Course)
-            .WithOne(c => c.Teacher)
-            .HasForeignKey<Course>(c => c.TeacherFK);
+            ////Teachers-Courses
+            //modelBuilder.Entity<Teacher>()
+            //.HasOne(t => t.Course)
+            //.WithOne(c => c.Teacher)
+            //.HasForeignKey<Course>(c => c.TeacherFK);
 
             //Teachers-User
             modelBuilder.Entity<User>()

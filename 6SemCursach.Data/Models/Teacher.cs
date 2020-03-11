@@ -8,7 +8,5 @@ namespace _6SemCursach.Data.Models
 
         public int UserFK { get; set; }
         public User User { get; set; }
-
-        public Course Course { get; set; }
     }
 }

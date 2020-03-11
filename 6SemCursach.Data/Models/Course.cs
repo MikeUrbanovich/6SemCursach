@@ -12,8 +12,7 @@ namespace _6SemCursach.Data.Models
         public string Title { get; set; }
         public decimal Price { get; set; }
 
-        public int TeacherFK { get; set; }
-        public Teacher Teacher { get; set; }
+        public int TeacherID { get; set; }
 
         public List<CoursStud> CoursStud { get; set; }
        
