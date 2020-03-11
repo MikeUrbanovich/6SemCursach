@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace _6SemCursach.Web.Models
 {
-    public class CourceModel
+    public class CourseModel
     {
         [Required(ErrorMessage = "Не указано Название")]
         public string Title { get; set; }

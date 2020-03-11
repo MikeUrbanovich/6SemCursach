@@ -16,33 +16,45 @@ namespace _6SemCursach.Web.Controllers
         {
             _cource = cource;
         }
-        // GET: Admin
+        
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Courses()
+        {
+            return View();
+        }
+        public ActionResult Students()
+        {
+            return View();
+        }
+        public ActionResult Teachers()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult AddCource()
+        public IActionResult AddCourse()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult AddCource(CourceModel model)
+        public IActionResult AddCourse(CourseModel model)
         {
             if (ModelState.IsValid)
             {
                 var courceExists = _cource.CourseExists(model.Title);
                 if (!courceExists)
                 {
-                    var cource = new NewCourse()
+                    var course = new NewCourse()
                     {
                         Title = model.Title,
                         Price = model.Price
                     };
                     // добавляем пользователя в бд
-                    _cource.AddCourse(cource);
+                    _cource.AddCourse(course);
 
                     return RedirectToAction("Index", "Home");
 

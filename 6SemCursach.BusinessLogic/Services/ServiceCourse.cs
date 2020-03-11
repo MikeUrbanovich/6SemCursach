@@ -13,7 +13,7 @@ namespace _6SemCursach.BusinessLogic.Services
         {
             _context = context;
         }
-        public IEnumerable<Course> GetAllCources()
+        public IEnumerable<Course> GetAllCourses()
         {
             return _context.Courses;
         }
@@ -26,6 +26,25 @@ namespace _6SemCursach.BusinessLogic.Services
                 Price = newcourse.Price
             };
             _context.Courses.Add(course);
+            _context.SaveChanges();
+        }
+
+        public void AddCourseWithFile(List<NewCourse> listNewCourses)
+        {
+            var listCourse = new List<Course>();
+            foreach(var course in listNewCourses)
+            {
+                listCourse
+                    .Add(
+                    new Course
+                    {
+                        Title = course.Title,
+                        Price = course.Price
+                    });
+                
+            }
+
+            _context.Courses.AddRange(listCourse);
             _context.SaveChanges();
         }
 

@@ -6,9 +6,11 @@ namespace _6SemCursach.BusinessLogic.Services
 {
     public interface ICourse
     {
-        IEnumerable<Course> GetAllCources();
+        IEnumerable<Course> GetAllCourses();
         void AddCourse(NewCourse course);
+        void AddCourseWithFile(List<NewCourse> listCourses);
         void DeleteCourse(int idCourse);
         bool CourseExists(string title);
+
     }
 }

@@ -7,17 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace _6SemCursach.Web.Controllers
 {
-    public class CourceController : Controller
+    public class CourseController : Controller
     {
         private readonly ICourse _course;
 
-        public CourceController(ICourse course)
+        public CourseController(ICourse course)
         {
             _course = course;
         }
-        public IActionResult ListCources()
+        public IActionResult ListCourses()
         {
-            return View(_course.GetAllCources());
+            return View(_course.GetAllCourses());
         }
     }
 }
