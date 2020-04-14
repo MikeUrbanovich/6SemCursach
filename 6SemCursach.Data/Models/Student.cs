@@ -12,7 +12,7 @@ namespace _6SemCursach.Data.Models
 
         public int StudentId { get; set; }
         public string Name { get; set; }
-
+        public double Money { get; set; }
         public List<CoursStud> CoursStud { get; set; }
        
         public int UserFK { get; set; }

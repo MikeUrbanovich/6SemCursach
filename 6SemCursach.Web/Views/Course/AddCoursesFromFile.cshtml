@@ -1,0 +1,10 @@
+﻿@model _6SemCursach.Web.Models.CourseModel
+
+
+<h2>Добавление курсов из файла</h2>
+<h3>Выберите файл для загрузки</h3>
+
+<form asp-action="AddCoursesFromFile" asp-controller="Course" asp-anti-forgery="true" enctype="multipart/form-data">        
+    <input type="file" name="uploadedFile"/><br>
+    <input type="submit" value="Добавить" />
+</form>

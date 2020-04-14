@@ -1,0 +1,24 @@
+﻿@model _6SemCursach.Web.Models.CourseModel
+
+
+<h2>Добавление курса</h2>
+
+<form asp-action="AddCourse" asp-controller="Course" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label asp-for="Title">Введите Название</label><br />
+            <input type="text" asp-for="Title" />
+            <span asp-validation-for="Title" />
+        </div>
+        <div>
+            <label asp-for="Price">Введите Цену</label><br />
+            <input type="number" min="0" asp-for="Price" />
+            <span asp-validation-for="Price" />
+        </div>
+        <div>
+            <input type="submit" value="Добавить" />
+        </div>
+    </div>
+</form>
+

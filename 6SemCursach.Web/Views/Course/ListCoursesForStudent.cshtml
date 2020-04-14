@@ -1,0 +1,46 @@
+﻿@model IEnumerable<_6SemCursach.Data.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cources for student</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherID)
+                </td>
+                <td>
+                    <a asp-action="DownloadCoursesInFile" asp-controller="Student">Загрузить список курсов в файл</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

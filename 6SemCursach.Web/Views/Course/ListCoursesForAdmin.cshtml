@@ -1,0 +1,48 @@
+﻿@model IEnumerable<_6SemCursach.Data.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cources</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherID)
+                </td>
+                @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CourseId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CourseId">Delete</a>
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+    @*<tr><td> <input type="submit" value="Add" /></td><td></td></tr>*@
+</table>
+<a asp-action="AddCource" asp-controller="Course">Добавить новый курс</a><br>
+<a asp-action="AddCoursesFromFile" asp-controller="Course">Добавить файл с новыми курсами новый курс</a>

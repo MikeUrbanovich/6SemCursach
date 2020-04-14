@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Course>
+    <CourseId>2</CourseId>
+    <Title>Математика</Title>
+    <Price>200.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>3</CourseId>
+    <Title>Информатика</Title>
+    <Price>200.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>4</CourseId>
+    <Title>СПО</Title>
+    <Price>500.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>5</CourseId>
+    <Title>C#</Title>
+    <Price>1500.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>6</CourseId>
+    <Title>ASP.NET Core</Title>
+    <Price>3500.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>7</CourseId>
+    <Title>Java</Title>
+    <Price>1500.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>8</CourseId>
+    <Title>PHP</Title>
+    <Price>1000.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>9</CourseId>
+    <Title>Pyton</Title>
+    <Price>1300.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>10</CourseId>
+    <Title>ASP.NET Core MVC</Title>
+    <Price>4500.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+  <Course>
+    <CourseId>11</CourseId>
+    <Title>C++</Title>
+    <Price>2500.00</Price>
+    <TeacherID>0</TeacherID>
+    <CoursStud />
+  </Course>
+</ArrayOfCourse>
