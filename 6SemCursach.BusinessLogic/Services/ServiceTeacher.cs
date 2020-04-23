@@ -15,9 +15,9 @@ namespace _6SemCursach.BusinessLogic.Services
         }
         public void AddTeacher(Register register)
         {
-            var role = _context.Roles.
-               Where(r => r.Title == register.Role)
-               .FirstOrDefault();
+            var role = _context.Roles
+                .FirstOrDefault(r => r.Title == register.Role);
+
             var user = new User
             {
                 Email = register.Email,

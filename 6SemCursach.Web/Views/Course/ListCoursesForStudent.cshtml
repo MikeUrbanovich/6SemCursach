@@ -1,24 +1,21 @@
-﻿@model IEnumerable<_6SemCursach.Data.Models.Course>
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding.Binders
+@model List<_6SemCursach.BusinessLogic.Models.CourseForStudent>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Cources for student</h1>
+<h1>Courses for student</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TeacherID)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -26,20 +23,17 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.Course.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Course.Price)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TeacherID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TeacherID)
-                </td>
-                <td>
-                    <a asp-action="DownloadCoursesInFile" asp-controller="Student">Загрузить список курсов в файл</a>
-                </td>
+                @if (!item.CourseIsListBought)
+                {
+                    <td>
+                        <input type="button" title="Buy" value="Купить курс" onclick="location.href = '@Url.Action("BuyCourse", "Student", item)'" />
+                    </td>
+                }
             </tr>
         }
     </tbody>

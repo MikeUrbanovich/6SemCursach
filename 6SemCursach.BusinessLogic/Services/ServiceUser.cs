@@ -42,8 +42,8 @@ namespace _6SemCursach.BusinessLogic.Services
         public UserAccount GetUser(string email)
         {
             var user = _context.Users
-                .Where(u => u.Email == email)
-                .FirstOrDefault();
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.Email == email);
 
             if (user == null)
             {

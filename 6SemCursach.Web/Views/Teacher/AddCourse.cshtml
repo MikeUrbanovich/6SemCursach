@@ -1,0 +1,43 @@
+﻿
+@model _6SemCursach.Web.Models.CourseWithStudentsModel
+
+@{
+    ViewData["Title"] = "AddCourse";
+}
+
+<h1>AddCourse</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.Title)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayTextFor(model => model.Course.Title)
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h1>Список студентов на этом курсе</h1>
+<table class="table">
+    <tbody>
+    @foreach (var item in Model.Students)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="ListCourses" asp-controller="Course">Назад к списку курсов</a>
+</div>
+

@@ -29,26 +29,26 @@ namespace _6SemCursach.Web.Controllers
 
         public CourseController(
             ICourse course,
-            IWebHostEnvironment enviroment,
+            IWebHostEnvironment environment,
             IConverter converter)
         {
             _course = course;
-            _appEnvironment = enviroment;
+            _appEnvironment = environment;
             _converter = converter;
         }
         public IActionResult ListCourses()
         {
             string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-            if (role == "Admin")
+
+            return role switch
             {
-                return View("ListCoursesForAdmin", _course.GetAllCourses());
-            }
-            if (role == "Student")
-            {
-                return View("ListCoursesForStudent", _course.GetAllCourses());
-            }
-            else
-                return View();
+                "Admin" => View("ListCoursesForAdmin", _course.GetAllCourses()),
+                "Student" => View("ListCoursesForStudent",
+                    _course.GetListCourseForStudent(User.FindFirst(x => x.Type == ClaimsIdentity.DefaultNameClaimType)
+                        .Value)),
+                "Teacher" => View("ListCoursesForTeacher", _course.GetAllCourses()),
+                _ => null
+            };
         }
 
         [HttpGet]
@@ -62,22 +62,22 @@ namespace _6SemCursach.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var courceExists = _course.CourseExists(model.Title);
-                if (!courceExists)
+                var courseExists = _course.CourseExists(model.Title);
+                if (!courseExists)
                 {
                     var course = new NewCourse()
                     {
                         Title = model.Title,
                         Price = model.Price
                     };
-                    // добавляем пользователя в бд
+                    // добавляем курс в бд
                     _course.AddCourse(course);
 
                     return RedirectToAction("Index", "Home");
 
                 }
                 else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                    ModelState.AddModelError("", "косяк");
             }
             return View(model);
         }

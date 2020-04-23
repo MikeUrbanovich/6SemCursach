@@ -1,0 +1,16 @@
+﻿@model _6SemCursach.Data.Models.User
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1>Home</h1>
+
+<th>
+    @Html.DisplayNameFor(model => model.Email)
+    @Html.DisplayTextFor(model => model.Email)
+</th>
+
+<br>
+<a asp-action="CourseForCurrentlyStudent" asp-controller="Student">Открыть моих курсов</a>
+<th></th>

@@ -48,10 +48,10 @@ namespace _6SemCursach.Data.Models
             .HasForeignKey(u => u.RoleFK);
 
             //Sem-CourseStude
-            modelBuilder.Entity<CoursStud>()
-            .HasOne(c => c.Semester)
-            .WithMany(s => s.CoursStud)
-            .HasForeignKey(c => c.SemesterFK);
+            //modelBuilder.Entity<CoursStud>()
+            //.HasOne(c => c.Semester)
+            //.WithMany(s => s.CoursStud)
+            //.HasForeignKey(c => c.SemesterFK);
 
             //Many-to-many
             modelBuilder.Entity<CoursStud>()

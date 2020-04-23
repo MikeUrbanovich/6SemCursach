@@ -10,5 +10,7 @@ namespace _6SemCursach.BusinessLogic.Services
         //Task<UserAccount> GetUser(string email, string password);
         //Task<UserAccount> GetUser(string email);
         void AddStudent(Register student);
+        User GetStudent(string email);
+        List<Student> GetStudentsForCourse(Course course);
     }
 }

@@ -1,8 +1,20 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Добро пожаловать в нашу школу дистанционного обучения</h1>
+
+        @if (!User.Claims.Any())
+        {
+            <p>Войти в свой личный кабинет  </p>
+            <input type="button" title="Войти" value="Войти" onclick="location.href = '@Url.Action("Login", "Account")'" />
+
+        }
+        else
+        {
+            <input type="button" title="Меню" value="Меню" 
+                   onclick="location.href ='@Url.Action("Index", $"{User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value}")'" />
+        }
+    </div>

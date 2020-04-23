@@ -19,7 +19,7 @@ namespace _6SemCursach.BusinessLogic.Services
                 _student.AddStudent(register);
             }
 
-            if (register.Role == "Theacher")
+            if (register.Role == "Teacher")
             {
                 _teacher.AddTeacher(register);
             }

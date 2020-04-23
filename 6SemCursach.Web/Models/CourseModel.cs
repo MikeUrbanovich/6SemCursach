@@ -10,6 +10,6 @@ namespace _6SemCursach.Web.Models
         [Required(ErrorMessage = "Не указано Название")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Не указана Цена")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
     }
 }

@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using _6SemCursach.Web.Models;
 using _6SemCursach.BusinessLogic.Services;
 using _6SemCursach.BusinessLogic.Models;
+using _6SemCursach.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace _6SemCursach.Web.Controllers
 {
@@ -15,7 +17,11 @@ namespace _6SemCursach.Web.Controllers
     {
         private readonly IUser _user;
         private readonly IRegister _register;
-        public AccountController(IUser service, IRegister register)
+       
+        public AccountController
+        (
+            IUser service,
+            IRegister register)
         {
             _user = service;
             _register = register;
@@ -37,15 +43,12 @@ namespace _6SemCursach.Web.Controllers
                 {
                     await Authenticate(user); // аутентификация
 
-                    if (user.Role == "Admin")
+                    return user.Role switch
                     {
-                        return RedirectToAction("Index", "Admin");
-                    }
-
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                        "Admin" => RedirectToAction("Index", "Admin"),
+                        "Student" => RedirectToAction("Index", "Student"),
+                        _ => RedirectToAction("Index", "Teacher"),
+                    };
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -72,10 +75,16 @@ namespace _6SemCursach.Web.Controllers
                         Password = model.Password,
                         Role = model.Role
                     };
+                    
                     // добавляем пользователя в бд
-                     _register.Registration(register);
+                    _register.Registration(register);
 
-                    await Authenticate(user); // аутентификация
+                    await Authenticate(new UserAccount()
+                    {
+                        Email = register.Email,
+                        Role = register.Role
+                    }
+                    ); // аутентификация
 
                     return RedirectToAction("Index", "Home");
 
